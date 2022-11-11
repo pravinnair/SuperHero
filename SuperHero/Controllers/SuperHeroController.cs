@@ -55,5 +55,14 @@ namespace SuperHeroAPI.Controllers
             updateHero.LastName = hero.LastName;
             return Ok(heroes);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<SuperHero>>> Delete(int id)
+        {
+            var hero = heroes.Find(h => h.Id == id);
+            if (hero == null)
+                return BadRequest(id);
+            return Ok(heroes);
+        }
     }
 }  
